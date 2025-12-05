@@ -8,7 +8,7 @@ const FeatureSection = () => {
     <div className=" bg-[#0b1727] py-8">
      <div className="flex flex-col justify-center items-center py-6 space-y-4 w-full px-4">
   <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white leading-snug">
-    Explore the Features Built
+    Explore the Features 
   </h2>
 
   <p className="text-center text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed md:max-w-xl mx-auto">
