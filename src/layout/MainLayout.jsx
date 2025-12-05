@@ -4,12 +4,16 @@ import Footer from "../components/Footer";
 
 const MainLayout = () => {
       return (
-            <div className="inter">
-                  <Navbar/>
-                  <div className="h-[calc(100vh-219px + 88px)]">
+            <div className="">
+                 <div>
+                   <Navbar/>
+                 </div>
+                  <div className="min-h-[calc(100vh-307px)]">
                         <Outlet/>
                   </div>
-                  <Footer/>
+                  <div>
+                        <Footer/>
+                  </div>
             </div>
       );
 };

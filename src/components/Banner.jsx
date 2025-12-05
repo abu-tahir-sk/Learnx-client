@@ -1,22 +1,23 @@
+
 import { LuUsers } from "react-icons/lu";
 import { TfiStatsUp, TfiTime } from "react-icons/tfi";
 
 const Banner = () => {
   return (
-    <div className="w-full md:max-w-6xl mx-auto">
+    <div className="w-full lg:max-w-7xl xl:max-w-6xl mx-auto px-4 py-10">
       {data.map((banner) => (
         <div
           key={banner.id}
-          className=" text-white md:flex justify-center items-center gap-6 flex-row-reverse h-[90vh]"
+          className=" text-white md:flex flex-col-reverse justify-center items-center gap-6 md:flex-row-reverse "
         >
-          <div className="md:w-1/2 md:mx-auto  relative">
+          <div className="relative  md:w-1/2 w-full h-[300px] sm:h-[400px] md:h-[450px] mx-auto pb-6">
             <img
               src={banner.sideImage}
-              className="rounded w-[600px] shadow-2xl h-[60vh] "
+              className="w-full h-full object-cover rounded-xl shadow-2xl"
             />
-            <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
-            <div className="absolute hidden md:flex backdrop-blur-2xl  justify-center items-center p-4 bg-blue-200/30 rounded -left-12 bottom-[60%] gap-4">
-              <div className="text-4xl bg-[#17604d]/20 p-2 rounded text-[#20a884]">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent rounded-xl"></div>
+            <div className="hidden md:flex absolute top-10 -left-12 backdrop-blur-xl p-4 bg-white/5 rounded-xl shadow-lg gap-4">
+              <div className="text-4xl bg-[#17604d]/20 p-3 rounded text-[#20a884]">
                 <TfiStatsUp />
               </div>
               <div className="">
@@ -25,8 +26,8 @@ const Banner = () => {
               </div>
             </div>
 
-            <div className="absolute hidden md:flex backdrop-blur-2xl  justify-center items-center p-4 bg-blue-200/10 rounded -right-16 bottom-[30%] gap-4">
-              <div className="text-4xl bg-[#218bf4]/30 p-2 rounded text-[#218bf4]">
+            <div className="hidden md:flex absolute top-[45%] -right-16 backdrop-blur-xl p-4 bg-white/5 rounded-xl shadow-lg gap-4">
+              <div className="text-4xl bg-[#218bf4]/30 p-3 rounded text-[#218bf4]">
                 <LuUsers />
               </div>
               <div>
@@ -34,8 +35,8 @@ const Banner = () => {
                 <p>Active Users</p>
               </div>
             </div>
-            <div className="hidden md:flex absolute backdrop-blur-2xl  justify-center items-center p-4 bg-blue-200/10 rounded -left-12 bottom-[10%] gap-4">
-              <div className="text-4xl bg-[#77491c]/20 p-2 rounded text-[#77491c]">
+            <div className="hidden md:flex absolute bottom-10 -left-12 backdrop-blur-xl p-4 bg-white/5 rounded-xl shadow-lg gap-4">
+              <div className="text-4xl bg-[#77491c]/20 p-3 rounded text-[#77491c]">
                 <TfiTime />
               </div>
               <div>
@@ -44,15 +45,15 @@ const Banner = () => {
               </div>
             </div>
           </div>
-
-          <div className="md:w-1/2 mx-auto  space-y-2 ">
-            <h1 className="text-5xl font-bold text-balance poppins-thin leading-tight">
+        {/* left content  */}
+          <div className="w-full md:w-1/2 space-y-6 text-center md:text-start">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
               {banner.title}
             </h1>
-            <p className="py-6 leading-8 text-[17px]" inter>
+            <p className="text-[16px] sm:text-lg md:text-xl leading-relaxed text-gray-300" inter>
               {banner.description}
             </p>
-            <button className=" px-6 py-3 text-[17px] font-semibold text-white bg-[#218bf4] border-none rounded hover:scale-3d">
+            <button className="px-6 py-3 text-[18px] font-semibold bg-[#218bf4] rounded-lg hover:bg-[#1a76d0] duration-300">
               {banner.btn}
             </button>
           </div>
@@ -65,7 +66,7 @@ const Banner = () => {
 const data = [
   {
     id: 1,
-    title: "Accelerate Your Business Growth",
+    title: "Welcome to Job Assessment",
     description:
       "Our powerful SaaS platform helps modern teams increase productivity by 40% and reduce operational costs. Join over 10,000+ companies already transforming their workflow.",
     btn: "Get Started",
@@ -99,3 +100,8 @@ const data = [
 ];
 
 export default Banner;
+
+
+
+
+
