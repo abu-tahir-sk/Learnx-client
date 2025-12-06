@@ -4,7 +4,7 @@ import FeatureSection from "../../components/FeatureSection";
 
 const Home = () => {
       return (
-            <div className="mt-20">
+            <div className="">
                   <Banner/>
                   <FeatureSection/>
                   <FAQSection/>

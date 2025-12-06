@@ -3,6 +3,7 @@ import MainLayout from "../layout/MainLayout";
 import ErrorPage from "../pages/Pending/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Auth/Login";
+import Assignments from "../pages/Assignments/Assignments";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/assignments",
+        element: <Assignments />,
       },
       {
         path: "/login",
