@@ -6,10 +6,10 @@ const AssignmentCard = ({ assignment }) => {
     assignment;
 
   return (
-    <div className="card bg-[#141e2b] rounded shadow-xl hover:shadow-green-50/10 text-white transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-indigo-500/5 ">
+    <div className="card bg-[#141e2b] rounded shadow-xl hover:shadow-[#218ce1]/30 text-white transition delay-100 duration-100 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-indigo-500/5 ">
       <div className="overflow-hidden rounded-lg relative group">
-        <img src={thumbnail} alt={title} className="transition-transform duration-[900ms]  group-hover:scale-110" />
-         <div class="absolute inset-0 group-hover:bg-gradient-to-r from-[#218ce1]/60 to-transparent rounded-xl"></div>
+        <img src={thumbnail} alt={title} className="transition-transform duration-900  group-hover:scale-110" />
+         <div class="absolute inset-0 group-hover:bg-[#218ce1]/30  rounded-xl"></div>
         <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-100 ">
           <span className="text-2xl bg-black/60 p-2 hover:bg-[#218ce1] hover:text-white rounded text-[#218ce1]"><MdZoomOutMap /></span>
         </div>
