@@ -5,7 +5,6 @@ import { NavLink } from "react-router";
 
 const Navbar = () => {
   const [open, setOpen] = useState(true);
-
   return (
     <div className="fixed top-0 w-full backdrop-blur-sm  bg-[#0c1623] border-b border-gray-600 z-50 shadow" >
       <div className="shadow-sm text-white/90 w-full md:max-w-6xl flex justify-between items-center py-4 mx-auto px-8 md:px-0 relative">
