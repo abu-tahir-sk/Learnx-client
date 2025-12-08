@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+html[data-theme="light"] body {
+  background-color: #ffffff;
+}
+
+html[data-theme="dark"] body {
+  background-color: #030c19;
+}
+html[data-theme="dark"] .dark\:text-white {
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .light\:text-black {
+  color: #000000 !important;
+}
+
