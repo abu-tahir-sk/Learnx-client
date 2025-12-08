@@ -40,7 +40,7 @@ const Banner = () => {
                 <TfiTime />
               </div>
               <div>
-                <h3 className="text-3xl font-bold">40%</h3>
+                <h3 className="text-3xl font-bold">50%</h3>
                 <p>Time Saved</p>
               </div>
             </div>
