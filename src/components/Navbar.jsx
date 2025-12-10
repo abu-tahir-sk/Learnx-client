@@ -28,22 +28,19 @@ const Navbar = () => {
           <li>
             <NavLink
               className={({ isActive }) =>
-                ` ${isActive ? "text-green-600" : ""}`
+                `text-[17px] font-semibold ${isActive ? "text-blue-600 font-bold border-b-4 rounded border-blue-600" : ""}`
               }
               to="/"
             >
               Home
             </NavLink>
           </li>
-          <li className={``}>
-            <NavLink to="/assignments">Assignments</NavLink>
+          <li >
+            <NavLink  className={({ isActive }) =>
+                `text-[17px] font-semibold ${isActive ? "text-blue-600 font-bold border-b-[3px] rounded border-blue-600" : ""}`
+              } to="/assignments">Assignments</NavLink>
           </li>
-          <li className={``}>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li className={``}>
-            <NavLink to="/">Home</NavLink>
-          </li>
+         
         </ul>
 
         <div className="flex items-center gap-6 md:block">
