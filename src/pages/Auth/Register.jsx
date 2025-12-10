@@ -4,9 +4,17 @@ import { GoArrowLeft } from "react-icons/go";
 
 const Register = () => {
   const { theme } = useTheme();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const form = e.target;
+
+  const name = form.name.value;
+  const photoURL = form.photoURL.value; 
+  const email = form.email.value;
+  const password = form.password.value;
+
+  console.log(name, photoURL, email, password);
+};
   return (
     <div className="grid h-screen place-items-center">
       <div
@@ -25,7 +33,7 @@ const Register = () => {
         </div>
 
         {/* forms */}
-        <form onClick={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <input
             className="w-full p-3 border-2 border-gray-400 rounded-lg outline-none focus:border-blue-400 placeholder-gray-500"
             type="text"
@@ -36,7 +44,7 @@ const Register = () => {
             className="w-full p-3 border-2 border-gray-400 rounded-lg outline-none focus:border-blue-400 placeholder-gray-500"
             type="url"
             placeholder="photo URL"
-            name="name"
+            name="photoURL"
           />
           <input
             className="w-full p-3 border-2 border-gray-400 rounded-lg outline-none focus:border-blue-400 placeholder-gray-500"
@@ -52,7 +60,7 @@ const Register = () => {
             id=""
           />
 
-          <button className="w-full p-3 bg-gradient-to-r from-blue-400 via-blue-500 rounded-2xl  to-blue-400 text-white text-lg font-semibold">
+          <button  className="w-full p-3 bg-gradient-to-r from-blue-400 via-blue-500 rounded-2xl  to-blue-400 text-white text-lg font-semibold">
             Submit
           </button>
           <p className="text-center">
