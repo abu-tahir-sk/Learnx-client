@@ -18,3 +18,17 @@ html[data-theme="dark"] .dark\:text-white {
 html[data-theme="light"] .light\:text-black {
   color: #000000 !important;
 }
+
+:root {
+  --primary: #4f46e5;
+  --background: #ffffff;
+  --text: #161c24;
+   --desc-text: rgb(55, 53, 53);
+}
+
+[data-theme="dark"] {
+  --primary: #818cf8;
+  --background: #030c19;
+  --text: #f1f5f9;
+  --desc-text: rgb(247, 246, 246);
+}

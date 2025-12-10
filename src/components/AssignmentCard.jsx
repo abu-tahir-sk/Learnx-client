@@ -1,17 +1,25 @@
 import { MdDelete } from "react-icons/md";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdZoomOutMap } from "react-icons/md";
+import { useTheme } from "../context/ThemeContext";
 const AssignmentCard = ({ assignment }) => {
   const { title, thumbnail, description, dueDate, difficulty, marks } =
     assignment;
+  const { theme } = useTheme();
 
   return (
-    <div className="card bg-[#141e2b] rounded shadow-xl hover:shadow-[#218ce1]/30 text-white transition delay-100 duration-100 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-indigo-500/5 ">
+    <div className={`card   rounded shadow-xl hover:shadow-[#218ce1]/30 text-(--text) transition delay-100 duration-100 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-indigo-500/5 ${theme === "light" ? "bg-base-100" : "bg-[#141e2b]"} `}>
       <div className="overflow-hidden rounded-lg relative group">
-        <img src={thumbnail} alt={title} className="transition-transform duration-900  group-hover:scale-110" />
-         <div class="absolute inset-0 group-hover:bg-[#218ce1]/30  rounded-xl"></div>
+        <img
+          src={thumbnail}
+          alt={title}
+          className="transition-transform duration-900  group-hover:scale-110"
+        />
+        <div class="absolute inset-0 group-hover:bg-[#218ce1]/30  rounded-xl"></div>
         <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-100 ">
-          <span className="text-2xl bg-black/60 p-2 hover:bg-[#218ce1] hover:text-white rounded text-[#218ce1]"><MdZoomOutMap /></span>
+          <span className="text-2xl bg-black/60 p-2 hover:bg-[#218ce1] hover:text-white rounded text-[#218ce1]">
+            <MdZoomOutMap />
+          </span>
         </div>
       </div>
       <div className="card-body p-4">
@@ -31,11 +39,8 @@ const AssignmentCard = ({ assignment }) => {
             <p className="text-gray-400">Due Date : {dueDate}</p>
           </div>
         </div>
-        <h2 className="text-2xl font-bold py-1">
-          {title}
-        
-        </h2>
-        <p className="text-[17px] font-normal text-gray-300">{description}</p>
+        <h2 className="text-2xl font-bold py-1">{title}</h2>
+        <p className="text-[17px] font-normal text-[--desc-text]">{description}</p>
         <div className="flex justify-between items-end py-4">
           <div className="font-bold">Marks : {marks}</div>
           <div className="flex items-center gap-4 justify-end">

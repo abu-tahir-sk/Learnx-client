@@ -5,7 +5,7 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   //   const [darkMode, setDarkMode] = useState(false);
   //   const toggleTheme = () => setDarkMode(!darkMode);
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);

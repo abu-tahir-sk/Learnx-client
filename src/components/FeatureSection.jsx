@@ -2,20 +2,28 @@ import { LuFilePlus, LuSend, LuShieldCheck, LuSunMoon } from "react-icons/lu";
 import { PiCheckCircleThin } from "react-icons/pi";
 import { BsBarChart } from "react-icons/bs";
 import FeatureCard from "./FeatureCard";
+import { useTheme } from "../context/ThemeContext";
 
 const FeatureSection = () => {
+  const { theme } = useTheme();
   return (
-    <div className=" bg-[#0b1727] py-8">
-     <div className="flex flex-col justify-center items-center py-6 space-y-4 w-full px-4">
-  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white leading-snug">
-    Explore the Features 
-  </h2>
+    <div
+      className={`bg-[#0b1727] ${
+        theme === "light"
+          ? "bg-base-100 "
+          : "bg-[#0b1727]"
+      } py-8`}
+    >
+      <div className="flex flex-col justify-center items-center py-6 space-y-4 w-full px-4 ">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center  leading-snug text-(--text)">
+          Explore the Features
+        </h2>
 
-  <p className="text-center text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed md:max-w-xl mx-auto">
-    Key features that make assignment creation, submission, and evaluation
-    smooth and easy.
-  </p>
-</div>
+        <p className="text-center text-(--desc-text) text-sm sm:text-base md:text-lg leading-relaxed md:max-w-xl mx-auto">
+          Key features that make assignment creation, submission, and evaluation
+          smooth and easy.
+        </p>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 max-w-6xl mx-auto py-8">
         {features.map((feature) => (
