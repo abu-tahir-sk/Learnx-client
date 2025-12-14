@@ -4,13 +4,18 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
+import { GoogleAuthProvider } from "firebase/auth";
+
+
 
 export const AuthProvider = ({ children }) => {
+  const googleProvider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
   const [Loading, setLoading] = useState(false);
 
@@ -21,6 +26,10 @@ export const AuthProvider = ({ children }) => {
   const signInUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+  const googleSignIn = ()=>
+  {
+    return  signInWithPopup(auth,googleProvider)
+  }
   const logOut = () => {
     return signOut(auth);
   };
@@ -36,6 +45,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const authInfo = {
+    googleSignIn,
     createUser,
     signInUser,
     logOut,
