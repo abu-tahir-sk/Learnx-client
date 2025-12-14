@@ -1,20 +1,33 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useTheme } from "../../context/ThemeContext";
 import { GoArrowLeft } from "react-icons/go";
+import { useAuth } from "../../hooks/useAuth";
+import { useState } from "react";
 
 const Register = () => {
+  const [show, setShow] = useState(false);
   const { theme } = useTheme();
-const handleSubmit = (e) => {
-  e.preventDefault();
-  const form = e.target;
+  const { createUser } = useAuth();
+  const navigate = useNavigate();
 
-  const name = form.name.value;
-  const photoURL = form.photoURL.value; 
-  const email = form.email.value;
-  const password = form.password.value;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
 
-  console.log(name, photoURL, email, password);
-};
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        console.log(result);
+        navigate("/");
+      })
+      .catch((error) => console.log(error));
+
+    console.log(name, photoURL, email, password);
+  };
   return (
     <div className="grid h-screen place-items-center">
       <div
@@ -54,13 +67,23 @@ const handleSubmit = (e) => {
           />
           <input
             className="w-full p-3 border-2 border-gray-400 rounded-lg outline-none focus:border-blue-400 placeholder-gray-500"
-            type="password"
+            type={show ? "password":"type"}
             name="password"
             placeholder="password"
             id=""
           />
+          <div  className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    onClick={()=>setShow(!show)}
+                    defaultChecked
+                    className="checkbox text-gray-700 bg-white"
+                  />
+                  <span>Show Password</span>
+                </div>
+             
 
-          <button  className="w-full p-3 bg-gradient-to-r from-blue-400 via-blue-500 rounded-2xl  to-blue-400 text-white text-lg font-semibold">
+          <button className="w-full p-3 bg-gradient-to-r from-blue-400 via-blue-500 rounded-2xl  to-blue-400 text-white text-lg font-semibold">
             Submit
           </button>
           <p className="text-center">

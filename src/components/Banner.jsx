@@ -17,7 +17,7 @@ const Banner = () => {
               src={banner.sideImage}
               className="w-full h-full object-cover rounded-xl shadow-2xl"
             />
-            <div class={`absolute inset-0 bg-gradient-to-r from-black/50 to-transparent rounded-xl ${theme === "light" ? "hidden" :"block"}`}></div>
+            <div className={`absolute inset-0 bg-gradient-to-r from-black/50 to-transparent rounded-xl ${theme === "light" ? "hidden" :"block"}`}></div>
             <div className={`hidden md:flex absolute top-10  ${theme === "light" ? "bg-black/50 backdrop-blur" : "bg-white/5 backdrop-blur-xl"}  -left-12  p-4  rounded-xl shadow-lg gap-4`}>
               <div className="text-4xl bg-[#17604d]/20 p-3 rounded text-[#20a884]">
                 <TfiStatsUp />
