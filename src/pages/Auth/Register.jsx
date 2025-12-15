@@ -3,12 +3,14 @@ import { useTheme } from "../../context/ThemeContext";
 import { GoArrowLeft } from "react-icons/go";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [show, setShow] = useState(false);
   const { theme } = useTheme();
-  const { createUser } = useAuth();
+  const { createUser,profileUpdate } = useAuth();
   const navigate = useNavigate();
+  const [messageError, setMessageError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,12 +21,36 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
+    if (!email.includes("@")) {
+      return setMessageError("Valid email");
+    }
+    // password validation
+    if (password.length < 6) {
+      return setMessageError("password minimum 6 character");
+    }
+    if (!/(?=.*[A-Z])/.test(password)) {
+      return setMessageError("password minimum capital letter ");
+    }
+    if (!/(?=.*\d)/.test(password)) {
+      return setMessageError("password minimum one number");
+    }
+     setMessageError("")
+
     createUser(email, password)
-      .then((result) => {
+      .then(async (result) => {
         console.log(result);
-        navigate("/");
+       
+        await profileUpdate(result.user,{
+          displayName: name,
+          photoURL: photoURL,
+        })
+        toast.success('successfully login')
+         navigate("/");
+      
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setMessageError(error.messageError);
+      });
 
     console.log(name, photoURL, email, password);
   };
@@ -61,27 +87,26 @@ const Register = () => {
           />
           <input
             className="w-full p-3 border-2 border-gray-400 rounded-lg outline-none focus:border-blue-400 placeholder-gray-500"
-            type="email"
+            type="text"
             placeholder="Email"
             name="email"
           />
           <input
             className="w-full p-3 border-2 border-gray-400 rounded-lg outline-none focus:border-blue-400 placeholder-gray-500"
-            type={show ? "password":"type"}
+            type={show ? "password" : "type"}
             name="password"
             placeholder="password"
             id=""
           />
-          <div  className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    onClick={()=>setShow(!show)}
-                    defaultChecked
-                    className="checkbox text-gray-700 bg-white"
-                  />
-                  <span>Show Password</span>
-                </div>
-             
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              onClick={() => setShow(!show)}
+              defaultChecked
+              className="checkbox text-gray-700 bg-white"
+            />
+            <span>Show Password</span>
+          </div>
 
           <button className="w-full p-3 bg-gradient-to-r from-blue-400 via-blue-500 rounded-2xl  to-blue-400 text-white text-lg font-semibold">
             Submit
@@ -93,6 +118,7 @@ const Register = () => {
             </Link>{" "}
           </p>
         </form>
+        {messageError && <p>{messageError}</p>}
       </div>
     </div>
   );

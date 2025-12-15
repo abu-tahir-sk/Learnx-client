@@ -2,15 +2,17 @@ import image from "../../assets/images/imge.png";
 import { TfiEmail } from "react-icons/tfi";
 import { IoKeyOutline } from "react-icons/io5";
 import { useTheme } from "../../context/ThemeContext";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { GoArrowLeft } from "react-icons/go";
 import { useAuth } from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { theme } = useTheme();
-  const { signInUser } = useAuth();
+  const { signInUser, googleSignIn } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,12 +20,30 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
 
+    const from = location.state?.from.pathname || "/";
+
     signInUser(email, password)
       .then((result) => {
-        navigate("/");
+        navigate(from, { replace: true });
+        form.reset()
+        toast("successfully login");
         console.log(result);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {console.log(error)
+        form.reset()
+      });
+  };
+
+  const handleGoogleSubmit = () => {
+    googleSignIn()
+      .then(() => {
+        
+        toast.success("successfully login with Google");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className="min-h-screen flex items-center justify-center  px-4">
@@ -86,6 +106,7 @@ const Login = () => {
             </form>
 
             <button
+              onClick={handleGoogleSubmit}
               className={`uppercase btn w-full       font-bold border-none text-[17px] flex items-center gap-4 ${
                 theme === "light"
                   ? "text-gray-900 bg-gray-100 hover:bg-blue-800 hover:text-white"

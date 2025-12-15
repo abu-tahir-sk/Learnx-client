@@ -61,6 +61,7 @@ const Navbar = () => {
               Assignments
             </NavLink>
           </li>
+          
         </ul>
 
         <div className="flex items-center gap-6 md:block">
@@ -74,12 +75,17 @@ const Navbar = () => {
               {theme === "light" ? <IoSunny /> : <BsMoonFill />}
             </button>
             {user ? (
-              <button
+             <div className="flex
+              items-center gap-2">
+              
+              <img className="w-[55px] h-[55px] rounded-full" src={user?.photoURL} alt="" />
+               <button
                 onClick={logOut}
                 className="rounded p-3 px-5 bg-[#218bf4] border-none text-white"
               >
                 Log Out
               </button>
+             </div>
             ) : (
               <button className="rounded p-3 px-5 bg-[#218bf4] border-none text-white">
                 <Link to="/login">Login</Link>
