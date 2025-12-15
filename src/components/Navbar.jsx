@@ -61,7 +61,20 @@ const Navbar = () => {
               Assignments
             </NavLink>
           </li>
-          
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                `text-[17px] font-semibold ${
+                  isActive
+                    ? "text-blue-600 font-bold border-b-[3px] rounded border-blue-600"
+                    : ""
+                }`
+              }
+              to="/pending-assignments"
+            >
+              Pending Assignments
+            </NavLink>
+          </li>
         </ul>
 
         <div className="flex items-center gap-6 md:block">
@@ -75,17 +88,36 @@ const Navbar = () => {
               {theme === "light" ? <IoSunny /> : <BsMoonFill />}
             </button>
             {user ? (
-             <div className="flex
-              items-center gap-2">
-              
-              <img className="w-[55px] h-[55px] rounded-full" src={user?.photoURL} alt="" />
-               <button
-                onClick={logOut}
-                className="rounded p-3 px-5 bg-[#218bf4] border-none text-white"
-              >
-                Log Out
-              </button>
-             </div>
+            
+                <div className="dropdown dropdown-bottom dropdown-end">
+                  <img
+                    tabIndex={0}
+                    role="button"
+                    className="w-[55px] h-[55px] rounded-full btn m-1"
+                    src={user?.photoURL}
+                    alt=""
+                  />
+                  <ul
+                    tabIndex="-1"
+                    className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+                  >
+                    <li>
+                      <a>Item 1</a>
+                    </li>
+                    <li>
+                      <a>Item 2</a>
+                    </li>
+                    <li>
+                      <button
+                        onClick={logOut}
+                        className="rounded p-3 px-5 bg-[#218bf4] border-none text-white"
+                      >
+                        Log Out
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+             
             ) : (
               <button className="rounded p-3 px-5 bg-[#218bf4] border-none text-white">
                 <Link to="/login">Login</Link>
