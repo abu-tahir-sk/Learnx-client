@@ -82,7 +82,7 @@ const Navbar = () => {
             <button
               onClick={toggleTheme}
               className={`text-3xl p-2  rounded-full text-white ${
-                theme === "light" ? "text-white bg-blue-600" : "bg-yellow-400"
+                theme === "light" ? "text-white bg-blue-600" : "bg-gray-700 text-yellow-400"
               }`}
             >
               {theme === "light" ? <IoSunny /> : <BsMoonFill />}
@@ -93,7 +93,7 @@ const Navbar = () => {
                   <img
                     tabIndex={0}
                     role="button"
-                    className="w-[55px] h-[55px] rounded-full btn m-1"
+                    className="w-[55px] h-[55px] rounded-full  m-1"
                     src={user?.photoURL}
                     alt=""
                   />
@@ -105,7 +105,7 @@ const Navbar = () => {
                       <Link>Assignments</Link>
                     </li>
                     <li>
-                      <a>Item 2</a>
+                      <a>Assignments</a>
                     </li>
                     <li>
                       <button
