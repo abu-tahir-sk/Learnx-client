@@ -89,6 +89,20 @@ const Navbar = () => {
               Add Assignments
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                `text-[17px] font-semibold ${
+                  isActive
+                    ? "text-blue-600 font-bold border-b-[3px] rounded border-blue-600"
+                    : ""
+                }`
+              }
+              to="/my-submitted"
+            >
+              My Submitted
+            </NavLink>
+          </li>
         </ul>
 
         <div className="flex items-center gap-6 md:block">

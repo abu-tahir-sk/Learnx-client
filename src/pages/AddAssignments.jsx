@@ -132,6 +132,7 @@ const AddAssignments = () => {
                 } w-full py-3 outline-none border  focus:border-blue-400 px-6  rounded`}
                 defaultValue={user?.email}
                 placeholder="User Email"
+                readOnly
               />
             </div>
             <div className="w-full">
@@ -144,6 +145,7 @@ const AddAssignments = () => {
                 } w-full py-3 outline-none border  focus:border-blue-400 px-6  rounded`}
                 type="text"
                 defaultValue={user?.displayName}
+                readOnly
               />
             </div>
           </div>

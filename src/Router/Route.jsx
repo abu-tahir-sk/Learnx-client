@@ -6,6 +6,7 @@ import Login from "../pages/Auth/Login";
 import Assignments from "../pages/Assignments/Assignments";
 import Register from "../pages/Auth/Register";
 import AddAssignments from "../pages/AddAssignments";
+import MySubmitted from "../pages/My-Submitted/MySubmitted";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/add-assignments",
         element: <AddAssignments />,
+      },
+      {
+        path: "/my-submitted",
+        element: <MySubmitted />,
       },
     ],
   },

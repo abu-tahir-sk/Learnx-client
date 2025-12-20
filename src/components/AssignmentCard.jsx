@@ -36,7 +36,7 @@ const AssignmentCard = ({ assignment }) => {
             </h4>
           </div>
           <div className="px-1 py-[2px] rounded-md border border-gray-700">
-            <p className="text-gray-400">Due Date : {dueDate}</p>
+            <p className="text-gray-400 px-2">Due Date : {dueDate}</p>
           </div>
         </div>
         <h2 className="text-2xl font-bold py-1">{title}</h2>
