@@ -1,23 +1,36 @@
 import { useTheme } from "../context/ThemeContext";
+import { useAuth } from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const AddAssignments = () => {
   const { theme } = useTheme();
+  const { user } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const initialData = Object.fromEntries(formData.entries());
     console.log(initialData);
 
-    fetch("http://localhost:3000/add-assignments", {
+    fetch("http://localhost:3000/assignments", {
       method: "POST",
       headers: {
-        "content-type": "application",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(initialData),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Success Assignment",
+            text: "You clicked the button!",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
       });
   };
   return (
@@ -117,7 +130,7 @@ const AddAssignments = () => {
                     ? "bg-gray-200  placeholder:text-gray-400 border-gray-100"
                     : "bg-[#030c19] border-gray-700"
                 } w-full py-3 outline-none border  focus:border-blue-400 px-6  rounded`}
-                type="email"
+                defaultValue={user?.email}
                 placeholder="User Email"
               />
             </div>
@@ -130,7 +143,7 @@ const AddAssignments = () => {
                     : "bg-[#030c19] border-gray-700"
                 } w-full py-3 outline-none border  focus:border-blue-400 px-6  rounded`}
                 type="text"
-                placeholder="User Name"
+                defaultValue={user?.displayName}
               />
             </div>
           </div>
