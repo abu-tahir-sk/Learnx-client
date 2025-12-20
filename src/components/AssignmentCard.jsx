@@ -2,20 +2,57 @@ import { MdDelete } from "react-icons/md";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdZoomOutMap } from "react-icons/md";
 import { useTheme } from "../context/ThemeContext";
-const AssignmentCard = ({ assignment }) => {
-  const { title, thumbnail, description, dueDate, difficulty, marks } =
+import Swal from "sweetalert2";
+const AssignmentCard = ({ assignment,setAssignments,assignments }) => {
+  const { _id, title, thumbnail, description, dueDate, difficulty, marks } =
     assignment;
   const { theme } = useTheme();
+  const handleDelete = (id) => {
+    console.log(id);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/assignments/${id}`,{
+          method: "DELETE"
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your assignments has been deleted.",
+                icon: "success",
+              });
+              const remaining = assignments.filter(assig => assig._id !== id);
+              setAssignments(remaining)
+            }
+          });
+      }
+    });
+  };
 
   return (
-    <div className={`card   rounded shadow-xl hover:shadow-[#218ce1]/30 text-(--text) transition delay-100 duration-100 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-indigo-500/5 ${theme === "light" ? "bg-base-100" : "bg-[#141e2b]"} `}>
+    <div
+      className={`card   rounded shadow-xl hover:shadow-[#218ce1]/30 text-(--text) transition delay-100 duration-100 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-indigo-500/5 ${
+        theme === "light" ? "bg-base-100" : "bg-[#141e2b]"
+      } `}
+    >
       <div className="overflow-hidden rounded-lg relative group">
         <img
           src={thumbnail}
           alt={title}
-          className="transition-transform duration-900  group-hover:scale-110"
+          className="transition-transform duration-900 w-full  group-hover:scale-110"
         />
-        <div class="absolute inset-0 group-hover:bg-[#218ce1]/30  rounded-xl"></div>
+        <div className="absolute inset-0 group-hover:bg-[#218ce1]/30  rounded-xl"></div>
         <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-100 ">
           <span className="text-2xl bg-black/60 p-2 hover:bg-[#218ce1] hover:text-white rounded text-[#218ce1]">
             <MdZoomOutMap />
@@ -40,11 +77,16 @@ const AssignmentCard = ({ assignment }) => {
           </div>
         </div>
         <h2 className="text-2xl font-bold py-1">{title}</h2>
-        <p className="text-[17px] font-normal text-[--desc-text]">{description}</p>
+        <p className="text-[17px] font-normal text-[--desc-text]">
+          {description}
+        </p>
         <div className="flex justify-between items-end py-4">
           <div className="font-bold">Marks : {marks}</div>
           <div className="flex items-center gap-4 justify-end">
-            <button className="text-xl font-bold bg-red-500 p-1 rounded text-white">
+            <button
+              onClick={() => handleDelete(_id)}
+              className="text-xl font-bold bg-red-500 p-1 rounded text-white"
+            >
               <MdDelete />
             </button>
             <button className="text-xl font-bold bg-cyan-600 p-1 rounded text-white ">
