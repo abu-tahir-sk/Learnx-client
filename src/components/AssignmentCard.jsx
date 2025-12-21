@@ -2,14 +2,34 @@ import { MdDelete } from "react-icons/md";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdZoomOutMap } from "react-icons/md";
 import { useTheme } from "../context/ThemeContext";
+import { Link } from "react-router";
 import Swal from "sweetalert2";
-const AssignmentCard = ({ assignment,setAssignments,assignments }) => {
-  const { _id, title, thumbnail, description, dueDate, difficulty, marks } =
-    assignment;
+import { useAuth } from "../hooks/useAuth";
+const AssignmentCard = ({ assignment, setAssignments, assignments }) => {
+  const {
+    _id,
+    title,
+    thumbnail,
+    description,
+    dueDate,
+    difficulty,
+    marks,
+    email,
+  } = assignment;
   const { theme } = useTheme();
-  const handleDelete = (id) => {
-    console.log(id);
+  const { user } = useAuth();
 
+  const handleDelete = (id, creatorEmail) => {
+    console.log(id);
+    
+
+    if (user.email !== creatorEmail) {
+      return Swal.fire({
+        icon: "error",
+        title: "Permission denied!",
+        text: "You cannot delete assignments created by others",
+      });
+    }
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -20,8 +40,11 @@ const AssignmentCard = ({ assignment,setAssignments,assignments }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/assignments/${id}`,{
-          method: "DELETE"
+        fetch(`http://localhost:3000/assignments/${id}`, {
+          method: "DELETE",
+          headers: {
+            email: user.email,
+          },
         })
           .then((res) => res.json())
           .then((data) => {
@@ -32,8 +55,8 @@ const AssignmentCard = ({ assignment,setAssignments,assignments }) => {
                 text: "Your assignments has been deleted.",
                 icon: "success",
               });
-              const remaining = assignments.filter(assig => assig._id !== id);
-              setAssignments(remaining)
+              const remaining = assignments.filter((assig) => assig._id !== id);
+              setAssignments(remaining);
             }
           });
       }
@@ -82,17 +105,24 @@ const AssignmentCard = ({ assignment,setAssignments,assignments }) => {
         </p>
         <div className="flex justify-between items-end py-4">
           <div className="font-bold">Marks : {marks}</div>
-          <div className="flex items-center gap-4 justify-end">
-            <button
-              onClick={() => handleDelete(_id)}
-              className="text-xl font-bold bg-red-500 p-1 rounded text-white"
-            >
-              <MdDelete />
-            </button>
-            <button className="text-xl font-bold bg-cyan-600 p-1 rounded text-white ">
-              <BiSolidEdit />
-            </button>
-            <button className="font-bold ">View</button>
+          <div>
+            {user.email === email ? (
+              <div className="flex items-center gap-4 justify-end">
+                <button
+                  onClick={() => handleDelete(_id, email)}
+                  className="text-xl font-bold bg-red-500 p-1 rounded text-white"
+                >
+                  <MdDelete />
+                </button>
+                <button className="text-xl font-bold bg-cyan-600 p-1 rounded text-white ">
+                 <Link to={`/update/${_id}`}>
+                  <BiSolidEdit /></Link>
+                </button>
+                <button className="font-bold ">View</button>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
