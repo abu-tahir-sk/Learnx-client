@@ -106,7 +106,7 @@ const AssignmentCard = ({ assignment, setAssignments, assignments }) => {
         <div className="flex justify-between items-end py-4">
           <div className="font-bold">Marks : {marks}</div>
           <div>
-            {user.email === email ? (
+            {user?.email === email ? (
               <div className="flex items-center gap-4 justify-end">
                 <button
                   onClick={() => handleDelete(_id, email)}

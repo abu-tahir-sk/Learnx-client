@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../hooks/useAuth";
 import Swal from "sweetalert2";
@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 const Update = () => {
       const { theme } = useTheme();
         const { user } = useAuth();
+        const navigate = useNavigate()
       const assignment = useLoaderData()
       console.log(assignment)
       const {
@@ -17,6 +18,7 @@ const Update = () => {
     difficulty,
     marks,
   } = assignment;
+  
     const handleUpdateAssignment = (e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
@@ -33,7 +35,7 @@ const Update = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          if (data.insertedId) {
+          if (data.modifiedCount > 0) {
             Swal.fire({
               position: "top-center",
               icon: "success",
@@ -42,6 +44,7 @@ const Update = () => {
               showConfirmButton: false,
               timer: 2000,
             });
+            navigate('/assignments')
           }
         });
     };

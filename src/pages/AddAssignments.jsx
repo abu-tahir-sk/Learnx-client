@@ -1,17 +1,33 @@
+import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import { useNavigate } from "react-router";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useAuth } from "../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const AddAssignments = () => {
+  const [startDate, setStartDate] = useState(new Date());
   const { theme } = useTheme();
   const { user } = useAuth();
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const initialData = Object.fromEntries(formData.entries());
+     initialData.dueDate = startDate;
     console.log(initialData);
 
-    fetch("http://localhost:3000/assignments", {
+    for (const key in initialData) {
+      if (!initialData[key]) {
+        setError(`${key}  is required!`);
+        return;
+      }
+    }
+    setError("");
+
+    fetch(`${import.meta.env.VITE_API_URL}/assignments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,6 +46,7 @@ const AddAssignments = () => {
             showConfirmButton: false,
             timer: 2000,
           });
+          navigate("/assignments");
         }
       });
   };
@@ -81,7 +98,8 @@ const AddAssignments = () => {
             </div>
             <div className="w-full">
               <select
-                name="level"
+                defaultValue="Select difficulty" 
+                name="difficulty"
                 className={`  ${
                   theme === "light"
                     ? "bg-gray-200  placeholder:text-gray-400 border-gray-100"
@@ -97,15 +115,18 @@ const AddAssignments = () => {
           </div>
           <div className="flex gap-6 w-full py-6">
             <div className="w-full">
-              <input
+              <DatePicker
                 name="dueData"
+                wrapperClassName="w-full"
+                
+                type="date"
                 className={`  ${
                   theme === "light"
                     ? "bg-gray-200  placeholder:text-gray-400 border-gray-100"
                     : "bg-[#030c19] border-gray-700"
                 } w-full py-3 outline-none border  focus:border-blue-400 px-6  rounded`}
-                type="date"
-                placeholder="Due Date"
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
               />
             </div>
             <div className="w-full">
@@ -149,6 +170,7 @@ const AddAssignments = () => {
               />
             </div>
           </div>
+          {error && <p className="py-3 text-red-500 text-center">{error} </p>}
 
           <div className="w-full flex flex-col justify-center">
             <button className="py-3 px-6 text-white font-bold bg-blue-500 rounded">
