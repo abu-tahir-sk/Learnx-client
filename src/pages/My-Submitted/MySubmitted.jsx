@@ -162,7 +162,7 @@ const MySubmitted = () => {
       <tr>
         <th></th>
         <th>Name</th>
-        <th>Job</th>
+        <th>jobs</th>
         <th>Favorite Colors</th>
         <th></th>
       </tr>
