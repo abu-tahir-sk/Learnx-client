@@ -13,26 +13,18 @@ const MySubmitted = () => {
     <h2 className="py-8 text-xl font-semibold  "><span className="">My Assignments</span>  : <span className="bg-blue-500 text-white p-1 rounded-full"> {assignments.length}</span></h2>
     <div className="overflow-x-auto">
   <table className="table">
-    {/* head */}
+    {/* header */}
     <thead>
       <tr>
      
         <th>Thumbnail & Title</th>
-        <th>Assignments</th>
+        <th>Marks</th>
         <th>Difficulty</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      {/* row 1  const {
-    _id,
-    title,
-    thumbnail,
-    description,
-    dueDate,
-    difficulty,
-    marks,
-    email, */}
+      {/* row 1  */}
   
      {
       assignments.map(assignment =>  <tr key={assignment._id}>
@@ -53,8 +45,7 @@ const MySubmitted = () => {
           </div>
         </td>
         <td>
-          {assignment.email}
-          <br />
+       
           <span className="badge badge-ghost badge-sm">{assignment.marks}</span>
         </td>
         <td>{assignment.difficulty}</td>

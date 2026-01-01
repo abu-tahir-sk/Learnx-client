@@ -68,7 +68,7 @@ const Banner = () => {
 const data = [
   {
     id: 1,
-    title: "Welcome to Job Assessment",
+    title: "Welcome to All Assessments",
     description:
       "Our powerful SaaS platform helps modern teams increase productivity by 40% and reduce operational costs. Join over 10,000+ companies already transforming their workflow.",
     btn: "Get Started",
