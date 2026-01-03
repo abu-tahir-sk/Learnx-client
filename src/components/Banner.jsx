@@ -70,7 +70,7 @@ const data = [
     id: 1,
     title: "Welcome to All Assessments",
     description:
-      "Our powerful SaaS platform helps modern teams increase productivity by 40% and reduce operational costs. Join over 10,000+ companies already transforming their workflow.",
+      "Our powerful SaaS platform helps modern teams increase productivity by 40% and reduce operational costs. Join over 10,000+ companies already transforming their workflow",
     btn: "Get Started",
     bgImage:
       "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg",
@@ -90,7 +90,7 @@ const data = [
   // },
   // {
   //   id: 3,
-  //   title: "Performance Analytics",
+  //   title: "Performance ",
   //   description:
   //     "Analyze assessment results with detailed reports and data-driven insights.",
   //   btn: "View Analytics",
