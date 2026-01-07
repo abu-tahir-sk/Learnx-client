@@ -6,7 +6,7 @@ const FAQSection = () => {
             <div className="py-10">
                   <div className="flex flex-col justify-center items-center text-center text-(--text) font-bold">
                         <h4 className="text-3xl md:text-4xl pb-3">Frequently Asked Questions</h4>
-                        <p className="text-[17px] font-normal max-w-[400px]">will have some frequently asked questions about your application features and uses</p>
+                        <p className="text-[17px] font-normal max-w-[400px]">will have some frequently asked questions about your applications features and uses</p>
                   </div>
                   <div className="max-w-6xl mx-auto py-10">
                         {
